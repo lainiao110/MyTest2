@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <title> HTML5-页面 </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <script type="text/javascript">
+    var ball;    
+var mouseX = 100;    
+var mouseY = 100;    
+var angle = 0;    
+var radius = 0;    
+   
+var ballstyle = "."   
+var ballcolor = "#FF0000";    
+var allzindex = 0;    
+   
+var cav_elem;    
+var cav_context;    
+   
+//old positon    
+var opos;    
+   
+function draw(){    
+        ball = document.createElement("p");    
+        ball.style.position = "absolute";    
+        ball.style.color = ballcolor;    
+        ball.style.zIndex = allzindex+1;    
+        ball.innerHTML = ballstyle;    
+        document.body.appendChild(ball);    
+        document.all.selected = false;    
+        
+    ball.style["left"] = mouseX+ "px";    
+    ball.style["top"] = mouseY+ "px";    
+}    
+function draw_cav(npos){    
+        
+   
+         
+    if(opos){    
+        cav_context.beginPath();    
+        // Start from the top-left point.    
+        
+        cav_context.moveTo(opos.x,opos.y);     
+        cav_context.lineTo(npos.x,npos.y);    
+        
+        cav_context.stroke();    
+        cav_context.closePath();    
+            
+    }    
+   
+}    
+   
+function MousePos(e){    
+    eee = e || window.event;    
+    var x,y;    
+    if(!document.all){    
+        x = e.pageX;    
+        y = e.pageY;    
+    }    
+    else{    
+        x = event.clientX + document.documentElement.scrollLeft;    
+        y = event.clientY + document.documentElement.scrollTop;    
+    }    
+    return {x:x,y:y};    
+}    
+function setXY(e){    
+    eee = e || window.event;    
+    var pos = MousePos(e);    
+    mouseX = pos.x;    
+    mouseY = pos.y;    
+    //if(e.button == 1){    
+        draw_cav(pos);    
+    //}    
+    opos = pos;    
+}    
+window.onload = function(){    
+        
+        //get canvas and context    
+            var elem = document.getElementById('myCanvas');    
+            if (elem && elem.getContext) {    
+                cav_elem = elem;    
+              var context = elem.getContext('2d');    
+              if (context) {    
+                cav_context = context;    
+                //cav_context.fillRect(0, 0, cav_elem.width, cav_elem.height);    
+              }    
+            }    
+                
+        //add mouse action    
+    document.documentElement.onmousemove = function(e){    
+        eee = e || window.event;    
+        setXY(e);    
+    };    
+}    
+  </script>
+ </head>
+
+ <body  onselectstart = "return false;">
+  <canvas id="myCanvas" border="1" width="1000" height="400">   
+     Fallback content, in case the browser does not support Canvas.    
+  </canvas>  
+ </body>
+</html>

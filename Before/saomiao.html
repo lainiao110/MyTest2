@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <title> HTML5-页面 </title>
+  <meta name="generator" content="editplus" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <style type="text/css">
+     #mycan{
+	   position:absolute;
+	   left:50%;
+	   top:50%;
+	   margin-left:-300px;
+	   margin-top:-200px;
+	   width:600px;
+	   height:400px;
+	 }
+  </style>
+ <script type="text/javascript">
+    var FPS=20;
+    var count=0;
+    window.onload=function(){
+        var canvas=document.getElementById("mycan");
+		var context=canvas.getContext("2d");
+		var width=canvas.width;
+		var height=canvas.height;
+		var MH=Math.PI/FPS*0.5;
+	    context.fillStyle="#000";
+		context.strokeStyle="red";
+		var count=FPS;
+		var clear=setInterval(draw,1000/FPS);
+		function draw(){
+		   context.fillRect(0,0,width,height);
+		   var value=Math.sin(MH*count);
+           var y=Math.floor(height-height*value);
+		   context.beginPath();
+		   context.moveTo(0,y);
+		   context.lineTo(width,y);
+		   context.stroke();
+		   context.closePath();
+		   count++;
+		   if(count>(2*FPS)){
+		     count=FPS;
+		   }
+		}
+	}
+ </script>
+ </head>
+
+ <body>
+    <label for="" id="lbl1">asdfasdfsa</label>
+	</br>
+	<label for="" id="lbl2">asdfasdfsa</label>
+    <canvas id="mycan" width="600" height="400">
+	
+	</canvas>
+ </body>
+</html>
