@@ -1,4 +1,5 @@
 //javascript 文件
+//这个才是第一个版本的Canvas，非常初级才刚刚开始，相信后面就慢慢好很多了
 var ready=(function(){
     var funcs=[];
 	var isready=false;
